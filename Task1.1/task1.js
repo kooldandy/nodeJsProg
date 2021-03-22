@@ -1,16 +1,15 @@
-const through2 = require("through2");
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-const reverseString = () => {
-  console.log("Please enter any string to reverse.\n");
-  process.stdin
-    .pipe(
-      through2(function write(buffer, encoding, next) {
-        this.push(buffer.toString().split("").reverse().join(""));
-        this.push("\n");
-        next();
-      })
-    )
-    .pipe(process.stdout);
-};
+
+const reverseString = function(){
+  readline.question("Please enter any string to reverse.\n", value => {
+    const revere = value.toString().split("").reverse().join("");
+    console.log(revere);
+    readline.close();
+  });
+}
 
 reverseString();
