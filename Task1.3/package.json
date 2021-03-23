@@ -1,0 +1,31 @@
+{
+  "name": "nodejsglobalmentoringprogram",
+  "version": "1.0.0",
+  "description": "Node Js Mentoring",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel-node": "babel-node --presets=env,stage-2",
+    "start": "nodemon --exec npm run babel-node -- ./task3.js"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "stage-2"
+    ]
+  },
+  "author": "Saurabh Ghosh <kkooldandy@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "through2": "^4.0.2"
+  }
+}

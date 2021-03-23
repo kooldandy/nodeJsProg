@@ -1,0 +1,9 @@
+const FILE_ADDED = "FILE_ADDED";
+const FILE_MODIFIED = "FILE_MODIFIED";
+const FILE_DELETED = "FILE_DELETED";
+
+module.exports = {
+  FILE_ADDED,
+  FILE_MODIFIED,
+  FILE_DELETED,
+};

@@ -1,0 +1,19 @@
+{
+  "name": "nodejsglobalmentoringprogram",
+  "version": "1.0.0",
+  "description": "Node Js Mentoring",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon task2.js"
+  },
+  "author": "Saurabh Ghosh <kkooldandy@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "through2": "^4.0.2"
+  }
+}
