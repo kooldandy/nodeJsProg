@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "login": "admin",
+      "password": "admin",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "2",
+      "login": "rohit",
+      "password": "rohit",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "61",
+      "login": "xyzrohitpandey2",
+      "password": "xyzrohitpandey2",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "4",
+      "login": "pandey2",
+      "password": "pandey2",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "3",
+      "login": "pandey",
+      "password": "pandey",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "5",
+      "login": "rohitpandey",
+      "password": "rohitpandey",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "6",
+      "login": "rohitpandey2",
+      "password": "rohitpandey2",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "7",
+      "login": "admin6",
+      "password": "admin6",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "8",
+      "login": "admin7",
+      "password": "admin7",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "9",
+      "login": "admin8",
+      "password": "admin8",
+      "age": 28,
+      "isDeleted": false
+    },
+    {
+      "id": "10",
+      "login": "admin9",
+      "password": "admin9",
+      "age": 28,
+      "isDeleted": false
+    }
+  ]
+}
