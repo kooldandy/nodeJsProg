@@ -1,7 +1,7 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const { parsedCookies, parsedQuery } = require('./middlewares');
-const { router } = require('./routes');
+import { express } from 'body-parser';
+import { bodyParser } from 'express';
+import { parsedCookies, parsedQuery } from './middlewares';
+import { router } from './routes';
 
 const app = express();
 app.use(parsedCookies);

@@ -11,7 +11,8 @@ import {
   userQuerySchema,
   autoSuggestQuerySchema,
 } from './../schema/userSchema';
-const validator = require('express-joi-validation').createValidator({});
+import { JOI } from 'express-joi-validation';
+const validator = JOI.createValidator({});
 
 const router = Router();
 

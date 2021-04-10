@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import { Joi } from 'joi';
 
 const userQuerySchema = Joi.object().keys({
   login: Joi.string().min(4).required(),
