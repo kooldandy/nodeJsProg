@@ -1,4 +1,4 @@
-const usersData = require('./../data/users.json');
+import usersData from './../data/users.json';
 import { ErrorMessages } from './../config/constants';
 import { v4 as uuidv4 } from 'uuid';
 import { omit } from 'lodash';
@@ -79,7 +79,7 @@ const getAutoSuggestUsers = (req, res) => {
   res.send(users);
 };
 
-module.exports = {
+export {
   getUserById,
   removeUserById,
   getAllUsers,

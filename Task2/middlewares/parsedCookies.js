@@ -5,6 +5,6 @@ const parsedCookies = (req, res, next) => {
   next();
 };
 
-module.exports = {
+export {
   parsedCookies,
 };

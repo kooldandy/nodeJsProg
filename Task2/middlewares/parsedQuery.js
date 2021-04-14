@@ -3,6 +3,6 @@ const parsedQuery = (req, res, next) => {
   next();
 };
 
-module.exports = {
+export {
   parsedQuery,
 };
