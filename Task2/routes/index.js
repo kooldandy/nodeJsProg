@@ -11,8 +11,8 @@ import {
   userQuerySchema,
   autoSuggestQuerySchema,
 } from './../schema/userSchema';
-import { JOI } from 'express-joi-validation';
-const validator = JOI.createValidator({});
+import Joi from 'express-joi-validation';
+const validator = Joi.createValidator({});
 
 const router = Router();
 
@@ -26,6 +26,4 @@ router.get(
   getAutoSuggestUsers,
 );
 
-module.exports = {
-  router,
-};
+export {router} ;

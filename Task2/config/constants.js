@@ -1,4 +1,3 @@
-const NOTFOUND = '404';
 const ErrorMessages = {
   NOUSERS: 'There is no users to show',
   NOTFOUND: 'Not found',
@@ -11,7 +10,6 @@ const ErrorMessages = {
   AGEVALIDATE: 'Age should be between 4 and 130',
 };
 
-module.exports = {
-  NOTFOUND,
+export {
   ErrorMessages,
 };

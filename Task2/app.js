@@ -1,5 +1,5 @@
-import { express } from 'body-parser';
-import { bodyParser } from 'express';
+import bodyParser from 'body-parser';
+import express from 'express';
 import { parsedCookies, parsedQuery } from './middlewares';
 import { router } from './routes';
 
@@ -13,7 +13,3 @@ app.use(router);
 app.listen(3000, () => {
   console.log('Listening on port 3000');
 });
-
-module.exports = {
-  app,
-};

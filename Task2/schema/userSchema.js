@@ -1,4 +1,4 @@
-import { Joi } from 'joi';
+import Joi from 'joi';
 
 const userQuerySchema = Joi.object().keys({
   login: Joi.string().min(4).required(),
@@ -14,7 +14,4 @@ const autoSuggestQuerySchema = Joi.object().keys({
   limit: Joi.number().greater(0).required(),
 });
 
-module.exports = {
-  userQuerySchema,
-  autoSuggestQuerySchema,
-};
+export { userQuerySchema, autoSuggestQuerySchema };
