@@ -1,47 +1,57 @@
-import { findAll, insert, findById, update, deleteUser } from "./../entity/user";
+import { Request, Response } from "express";
+import { AppService } from "./../service";
 
-const getAllUsers = (req: any, res: any) => {
-    findAll()
-        .then((appusers: any) => res.status(200).send(appusers))
-        .catch((error: any) => res.status(400).send(error))
-};
 
-const getUserById = (req: any, res: any) => {
-    const id = req.params.userId;
-    findById(id)
-        .then((appusers: any) => res.status(200).send(appusers))
-        .catch((error: any) => res.status(400).send(error))
-};
+export class AppController {
+    private appService: AppService;
 
-const createUser = (req: any, res: any) => {
-    const body = req.body;
-    insert(body.name, body.email)
-        .then((result: any) => res.status(200).send(result))
-        .catch((error: any) => res.status(400).send(error))
-};
+    constructor() {
+        this.appService = new AppService();
+    }
 
-const updateUser = (req: any, res: any) => {
-    const { params, body } = req;
-    const id = params.userId;
-    const name = body.name;
+    public getAllUsers = (req: Request, res: Response) => {
+        this.appService.getAllUsers()
+            .then((appusers: any) => res.status(200).send(appusers))
+            .catch((error: any) => res.status(400).send(error))
+    };
 
-    update(id, name)
-        .then((result: any) => res.status(200).send(result))
-        .catch((error: any) => res.status(400).send(error))
-};
+    public getUserById = (req: Request, res: Response) => {
+        const id = parseInt(req.params.userId, 10);
+        this.appService.getUserById(id)
+            .then((appuser: any) => res.status(200).send(appuser))
+            .catch((error: any) => res.status(400).send(error))
+    };
 
-const removeUserById = (req: any, res: any) => {
-    const id = req.params.userId;
+    public createUser = (req: Request, res: Response) => {
+        const body = req.body;
+        this.appService.createUser(body.name, body.email)
+            .then((result: any) => res.status(200).send(result))
+            .catch((error: any) => res.status(400).send(error))
+    };
 
-    deleteUser(id)
-        .then((appusers: any) => res.status(200).send(appusers))
-        .catch((error: any) => res.status(400).send(error))
-};
+    public updateUser = (req: Request, res: Response) => {
+        const { params, body } = req;
+        const id = parseInt(params.userId, 10);
+        const name = body.name;
 
-export {
-    getAllUsers,
-    createUser,
-    getUserById,
-    updateUser,
-    removeUserById
+        this.appService.updateUser(id, name)
+            .then((result: any) => res.status(200).send(result))
+            .catch((error: any) => res.status(400).send(error))
+    };
+
+    public removeUserById = (req: Request, res: Response) => {
+        const id = parseInt(req.params.userId, 10);
+
+        this.appService.removeUserById(id)
+            .then((appusers: any) => res.status(200).send(appusers))
+            .catch((error: any) => res.status(400).send(error))
+    };
+
+    private constructResponse(result: any) {
+        const response = {
+            result: result,
+            error: ''
+        }
+        return response;
+    }
 }

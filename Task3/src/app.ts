@@ -1,22 +1,37 @@
 import express from 'express';
 import * as bodyParser from 'body-parser';
-import { router } from './routes';
+import { AppRouter } from './routes';
+import { AddressInfo } from 'net';
 
+export class App {
 
-const app = express();
+    private app;
+    private appRouter: AppRouter;
+    private port: number;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({
-    limit: '50mb',
-    verify(req: any, res, buf, encoding) {
-        req.rawBody = buf;
+    constructor(port: number) {
+        this.app = express();
+        this.appRouter = new AppRouter();
+        this.port = port;
+
+        this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(bodyParser.json({
+            limit: '50mb',
+            verify(req: any, res, buf, encoding) {
+                req.rawBody = buf;
+            }
+        }));
+        this.app.use(express.json());
+
+        this.app.get('/', (req, res) => res.send('Homework 3: CRUD operation with postgres DB'));
+
+        this.app.use('/api', this.appRouter.getRouter());
     }
-}));
-app.use(express.json());
 
-app.get('/', (req, res) => res.send('Homework 3: CRUD operation with postgres DB'));
-
-app.use(router);
-
-
-export { app };
+    public listen() {
+        const server = this.app.listen(this.port, '0.0.0.0', () => {
+            const { port, address } = server.address() as AddressInfo;
+            console.log('Server listening on:', 'http://' + address + ':' + port);
+        });
+    }
+}

@@ -23,21 +23,3 @@ export const database = new Sequelize(
           },
     },
 );
-
-// import { User } from './../entity/user';
-// export let connect = async () => {
-//     const connection = await createConnection({
-//         type: "postgres",
-//         host: "ec2-54-211-176-156.compute-1.amazonaws.com",
-//         port: 5432,
-//         username: "truppoifmqexdx", // our created username, you can have your own user name
-//         password: "c6dc7343f7f396b772e9a2da021c30896137e31108ff3edab7ac1d67d757dffe", // our created username, you can have your own password
-//         database: "d6g5euabrn8vjl", // our created database name, you can have your own
-//         entities: [
-//             User
-//         ],
-//         synchronize: true,
-//         logging: false,
-//         ssl: true
-//     });
-// };

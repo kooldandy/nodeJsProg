@@ -1,14 +1,20 @@
 import { Router } from 'express';
-import { createUser, getAllUsers, getUserById, updateUser, removeUserById } from './../controller';
+import { AppController } from './../controller';
 
-const router = Router();
+export class AppRouter {
+    private router: Router;
+    private appController: AppController
 
-router.route('/api/user/:userId').get(getUserById);
-router.route('/api/users').get(getAllUsers);
-// router.post('/api/user', validator.body(userQuerySchema), createUser);
-router.post('/api/user', createUser);
-// router.put('/api/user/:userId', validator.body(userQuerySchema), updateUser);
-router.put('/api/user/:userId', updateUser);
-router.delete('/api/user/:userId', removeUserById);
+    constructor() {
+        this.router = Router();
+        this.appController = new AppController();
 
-export {router} ;
+        this.router.get('/user/:userId', this.appController.getUserById);
+        this.router.get('/users', this.appController.getAllUsers);
+        this.router.post('/user', this.appController.createUser);
+        this.router.put('/user/:userId', this.appController.updateUser);
+        this.router.delete('/user/:userId', this.appController.removeUserById);
+    }
+
+    public getRouter = () => this.router;
+}
