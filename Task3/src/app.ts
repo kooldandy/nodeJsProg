@@ -14,6 +14,13 @@ export class App {
         this.appRouter = new AppRouter();
         this.port = port;
 
+        this.initializeMiddlewares();
+        //this.app.use(express.json());
+
+        this.initializeRouter();
+    }
+
+    private initializeMiddlewares() {
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(bodyParser.json({
             limit: '50mb',
@@ -21,10 +28,10 @@ export class App {
                 req.rawBody = buf;
             }
         }));
-        this.app.use(express.json());
+    }
 
+    private initializeRouter() {
         this.app.get('/', (req, res) => res.send('Homework 3: CRUD operation with postgres DB'));
-
         this.app.use('/api', this.appRouter.getRouter());
     }
 

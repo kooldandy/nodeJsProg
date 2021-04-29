@@ -49,7 +49,7 @@ export class AppController {
 
     private constructResponse(result: any) {
         const response = {
-            result: result,
+            result,
             error: ''
         }
         return response;

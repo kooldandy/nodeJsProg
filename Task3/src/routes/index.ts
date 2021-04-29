@@ -9,6 +9,10 @@ export class AppRouter {
         this.router = Router();
         this.appController = new AppController();
 
+        this.setAppRoutes();
+    }
+
+    private setAppRoutes() {
         this.router.get('/user/:userId', this.appController.getUserById);
         this.router.get('/users', this.appController.getAllUsers);
         this.router.post('/user', this.appController.createUser);
