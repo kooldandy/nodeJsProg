@@ -15,7 +15,6 @@ export class App {
         this.port = port;
 
         this.initializeMiddlewares();
-        //this.app.use(express.json());
 
         this.initializeRouter();
     }
