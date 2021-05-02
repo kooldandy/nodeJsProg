@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 
-// Enable the dotenv config 
+// Enable the dotenv config
 dotenv.config();
 
 const { DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT, DIALECT } = process.env;
