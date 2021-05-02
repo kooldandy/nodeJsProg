@@ -11,6 +11,8 @@ export class AppRouter {
         this.userController = new UserController();
 
         this.setUserRoutes();
+
+        this.setGroupRoutes();
     }
 
     private setUserRoutes() {
