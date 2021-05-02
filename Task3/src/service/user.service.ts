@@ -1,11 +1,11 @@
-import { IUser } from "../interface/user.interface";
-import { DataAccess } from "./../dao";
+import { IUser } from "../interface";
+import { UserDataAccess } from "./../dao";
 
-export class AppService {
-    private dao: DataAccess;
+export class UserService {
+    private dao: UserDataAccess;
 
     constructor() {
-        this.dao = new DataAccess();
+        this.dao = new UserDataAccess();
     }
 
     public getAllUsers = async (): Promise<IUser[]> => {

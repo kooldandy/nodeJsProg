@@ -1,30 +1,30 @@
 import { Request, Response } from "express";
-import { AppService } from "./../service";
+import { UserService } from "./../service";
 
 
-export class AppController {
-    private appService: AppService;
+export class UserController {
+    private userService: UserService;
 
     constructor() {
-        this.appService = new AppService();
+        this.userService = new UserService();
     }
 
     public getAllUsers = (req: Request, res: Response) => {
-        this.appService.getAllUsers()
+        this.userService.getAllUsers()
             .then((appusers: any) => res.status(200).send(appusers))
             .catch((error: any) => res.status(400).send(error))
     };
 
     public getUserById = (req: Request, res: Response) => {
         const id = parseInt(req.params.userId, 10);
-        this.appService.getUserById(id)
+        this.userService.getUserById(id)
             .then((appuser: any) => res.status(200).send(appuser))
             .catch((error: any) => res.status(400).send(error))
     };
 
     public createUser = (req: Request, res: Response) => {
         const body = req.body;
-        this.appService.createUser(body.username, body.email)
+        this.userService.createUser(body.username, body.email)
             .then((result: any) => res.status(200).send(result))
             .catch((error: any) => res.status(400).send(error))
     };
@@ -34,7 +34,7 @@ export class AppController {
         const id = parseInt(params.userId, 10);
         const username = body.username;
 
-        this.appService.updateUser(id, username)
+        this.userService.updateUser(id, username)
             .then((result: any) => res.status(200).send(result))
             .catch((error: any) => res.status(400).send(error))
     };
@@ -42,7 +42,7 @@ export class AppController {
     public removeUserById = (req: Request, res: Response) => {
         const id = parseInt(req.params.userId, 10);
 
-        this.appService.removeUserById(id)
+        this.userService.removeUserById(id)
             .then((appusers: any) => res.status(200).send(appusers))
             .catch((error: any) => res.status(400).send(error))
     };
