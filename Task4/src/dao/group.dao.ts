@@ -1,3 +1,4 @@
+import { Permission } from "../enum";
 import { IGroup } from '../interface';
 import { Group } from '../model';
 
@@ -8,7 +9,7 @@ export class GroupDataAccess {
             .findAll({ include: [{ all: true }] })
     }
 
-    public findById(id: number): Promise<IGroup> {
+    public findById(id: string): Promise<IGroup> {
         return Group
             .findOne({
                 where: {
@@ -17,27 +18,28 @@ export class GroupDataAccess {
             })
     }
 
-    public insert(username: string, email: string): Promise<IGroup> {
+    public insert(name: string, permissions: Permission[]): Promise<IGroup> {
         return Group
-            .create({ username, email })
+            .create({ name, permissions })
     }
 
-    public update(user_id: number, value: string): Promise<[number, IGroup[]]> {
+    public update(id: string, name: string, permissions: Permission[]): Promise<[number, IGroup[]]> {
         return Group
             .update({
-                username: value
+                name,
+                permissions
             }, {
                 where: {
-                    user_id,
+                    id,
                 }
             });
     }
 
-    public deleteUser(user_id: number): Promise<number> {
+    public deleteById(id: string): Promise<number> {
         return Group
             .destroy({
                 where: {
-                    user_id,
+                    id,
                 }
             });
     }

@@ -13,15 +13,16 @@ export class Group extends Model implements IGroup {
 Group.init(
     {
         id:{
-            type: new DataTypes.STRING(128),
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true,
         },
         name:{
-            type: new DataTypes.STRING(128),
+            type: DataTypes.STRING,
             allowNull: false,
         },
         permissions:{
-            type: new DataTypes.ARRAY(DataTypes.STRING),
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
         }
     },
@@ -31,4 +32,5 @@ Group.init(
     }
 );
 
-// Group.sync({ force: true }).then(() => console.log("Group table created"));
+// Group.sync({force: true}).then(() => console.log("Group table created"));
+Group.sync().then(() => console.log("Group table created"));

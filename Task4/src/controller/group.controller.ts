@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserService, GroupService } from "./../service";
+import { GroupService } from "./../service";
 
 
 export class GroupController {
@@ -16,7 +16,7 @@ export class GroupController {
     };
 
     public getGroupById = (req: Request, res: Response) => {
-        const id = parseInt(req.params.userId, 10);
+        const id = req.params.groupId;
         this.groupService.getGroupById(id)
             .then((appuser: any) => res.status(200).send(appuser))
             .catch((error: any) => res.status(400).send(error))
@@ -24,23 +24,24 @@ export class GroupController {
 
     public createGroup = (req: Request, res: Response) => {
         const body = req.body;
-        this.groupService.createGroup(body.username, body.email)
+        this.groupService.createGroup(body.name, body.permissions)
             .then((result: any) => res.status(200).send(result))
             .catch((error: any) => res.status(400).send(error))
     };
 
     public updateGroup = (req: Request, res: Response) => {
         const { params, body } = req;
-        const id = parseInt(params.userId, 10);
-        const username = body.username;
+        const id = params.groupId;
+        const name = body.name;
+        const permissions = body.permissions;
 
-        this.groupService.updateGroup(id, username)
+        this.groupService.updateGroup(id, name, permissions)
             .then((result: any) => res.status(200).send(result))
             .catch((error: any) => res.status(400).send(error))
     };
 
     public removeGroupById = (req: Request, res: Response) => {
-        const id = parseInt(req.params.userId, 10);
+        const id = req.params.groupId;
 
         this.groupService.removeGroupById(id)
             .then((appusers: any) => res.status(200).send(appusers))

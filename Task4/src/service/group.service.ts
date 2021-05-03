@@ -1,5 +1,6 @@
 import { IGroup } from "../interface";
 import { GroupDataAccess } from "./../dao";
+import { Permission } from "../enum";
 
 export class GroupService {
     private dao: GroupDataAccess;
@@ -18,7 +19,7 @@ export class GroupService {
         }
     };
 
-    public getGroupById = async (id: number): Promise<IGroup> => {
+    public getGroupById = async (id: string): Promise<IGroup> => {
 
         try {
             const appuser = await this.dao.findById(id);
@@ -28,30 +29,29 @@ export class GroupService {
         }
     };
 
-    public createGroup = async (name: string, email: string): Promise<IGroup> => {
-
+    public createGroup = async (name: string, permissions: Permission[]): Promise<IGroup> => {
         try {
-            const result = await this.dao.insert(name, email);
+            const result = await this.dao.insert(name, permissions);
             return result;
         } catch (error) {
             return error;
         }
     };
 
-    public updateGroup = async (id: number, name: string): Promise<boolean> => {
+    public updateGroup = async (id: string, name: string, permissions: Permission[]): Promise<boolean> => {
 
         try {
-            const result = await this.dao.update(id, name);
+            const result = await this.dao.update(id, name, permissions);
             return result[result.length-1]===1? true: false;
         } catch (error) {
             return error;
         }
     };
 
-    public removeGroupById = async (id: number): Promise<boolean> => {
+    public removeGroupById = async (id: string): Promise<boolean> => {
 
         try {
-            const result = await this.dao.deleteUser(id);
+            const result = await this.dao.deleteById(id);
             return result? true: false;
         } catch (error) {
             return error;

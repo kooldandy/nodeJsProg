@@ -1,14 +1,16 @@
 import { Router } from 'express';
 import { createUserSchema, updateUserSchema } from '../schema';
-import { UserController } from './../controller';
+import { UserController, GroupController } from './../controller';
 
 export class AppRouter {
     private router: Router;
-    private userController: UserController
+    private userController: UserController;
+    private groupController: GroupController;
 
     constructor() {
         this.router = Router();
         this.userController = new UserController();
+        this.groupController = new GroupController();
 
         this.setUserRoutes();
 
@@ -24,11 +26,11 @@ export class AppRouter {
     }
 
     private setGroupRoutes() {
-        this.router.get('/group/:userId', this.userController.getUserById);
-        this.router.get('/groups', this.userController.getAllUsers);
-        this.router.post('/group', createUserSchema, this.userController.createUser);
-        this.router.put('/group/:userId', updateUserSchema, this.userController.updateUser);
-        this.router.delete('/group/:userId', this.userController.removeUserById);
+        this.router.get('/group/:groupId', this.groupController.getGroupById);
+        this.router.get('/groups', this.groupController.getAllGroups);
+        this.router.post('/group', this.groupController.createGroup);
+        this.router.put('/group/:groupId', this.groupController.updateGroup);
+        this.router.delete('/group/:groupId', this.groupController.removeGroupById);
     }
 
     public getRouter = () => this.router;
