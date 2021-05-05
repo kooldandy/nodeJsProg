@@ -41,11 +41,19 @@ const validateRequest = (req: Request, res: Response, next: NextFunction, schema
 
 
 export function createGroupSchema(req: Request) {
-    const userSchema = Joi.object({
+    const groupSchema = Joi.object({
         name: Joi.string().min(3).max(30).required(),
         permissions: Joi.array().min(1).max(6).required()
     });
-    return validateRequest1(req, userSchema);
+    return validateRequest1(req, groupSchema);
+}
+
+export function addUsersToGroupSchema(req: Request) {
+    const groupUserSchema = Joi.object({
+        groupId: Joi.string().required(),
+        userIds: Joi.array().min(1).required()
+    });
+    return validateRequest1(req, groupUserSchema);
 }
 
 const validateRequest1 = (req: Request, schema: Joi.Schema) => {
