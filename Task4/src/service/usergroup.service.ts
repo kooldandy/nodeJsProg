@@ -1,3 +1,4 @@
+import { UserGroup } from '../model';
 import { UserGroupDataAccess } from './../dao';
 
 export class UserGroupService {
@@ -7,12 +8,12 @@ export class UserGroupService {
     this.dao = new UserGroupDataAccess();
   }
 
-  public addUsersToGroup = async (groupId: string, usersIds: number[]) => {
+  public addUsersToGroup = async (groupId: string, usersIds: number[]):Promise<UserGroup[]> => {
     try {
       const result = await this.dao.addUsersToGroup(groupId, usersIds);
       return result;
     } catch (error) {
-      return error;
+      throw new Error(error);
     }
   };
 }

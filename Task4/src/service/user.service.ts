@@ -14,7 +14,7 @@ export class UserService {
             const appusers = await this.dao.findAll();
             return appusers;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 
@@ -24,7 +24,7 @@ export class UserService {
             const appuser = await this.dao.findById(id);
             return appuser;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 
@@ -34,7 +34,7 @@ export class UserService {
             const result = await this.dao.insert(name, email);
             return result;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 
@@ -44,7 +44,7 @@ export class UserService {
             const result = await this.dao.update(id, name);
             return result[result.length-1]===1? true: false;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 
@@ -54,7 +54,7 @@ export class UserService {
             const result = await this.dao.deleteUser(id);
             return result? true: false;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 }

@@ -15,7 +15,7 @@ export class GroupService {
             const appusers = await this.dao.findAll();
             return appusers;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 
@@ -25,7 +25,7 @@ export class GroupService {
             const appuser = await this.dao.findById(id);
             return (appuser) ? appuser : this.throwError();
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 
@@ -34,7 +34,7 @@ export class GroupService {
             const result = await this.dao.insert(name, permissions);
             return result;
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 
@@ -44,7 +44,7 @@ export class GroupService {
             const result = await this.dao.update(id, name, permissions);
             return (result[result.length - 1] === 1) ? this.getGroupById(id) : this.throwError();
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 
@@ -54,7 +54,7 @@ export class GroupService {
             const result = await this.dao.deleteById(id);
             return (result) ? this.getGroupById(id) : this.throwError();
         } catch (error) {
-            return error;
+            throw new Error(error);
         }
     };
 
@@ -64,9 +64,5 @@ export class GroupService {
         err.name = '404';
 
         return Promise.reject(err);
-
-        // return new Promise((resolve, reject) =>{
-        //     throw err;
-        // })
     }
 }
