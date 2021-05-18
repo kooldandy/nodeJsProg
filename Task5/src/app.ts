@@ -2,6 +2,7 @@ import express from 'express';
 import * as bodyParser from 'body-parser';
 import { AppRouter } from './routes';
 import { AddressInfo } from 'net';
+import { loggerError, loggerRequest, morganMiddleware, winston } from './logger';
 
 export class App {
 
@@ -27,6 +28,11 @@ export class App {
                 req.rawBody = buf;
             }
         }));
+
+        //this.app.use(loggerRequest);
+        //this.app.use(loggerError);
+
+        this.app.use(morganMiddleware)
     }
 
     private initializeRouter() {
@@ -37,7 +43,7 @@ export class App {
     public listen() {
         const server = this.app.listen(this.port, '0.0.0.0', () => {
             const { port, address } = server.address() as AddressInfo;
-            console.log('Server listening on:', 'http://' + address + ':' + port);
+            winston.log('info', 'Server listening on:', 'http://' + address + ':' + port);
         });
     }
 }
