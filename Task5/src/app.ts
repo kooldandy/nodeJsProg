@@ -2,7 +2,7 @@ import express from 'express';
 import * as bodyParser from 'body-parser';
 import { AppRouter } from './routes';
 import { AddressInfo } from 'net';
-import { loggerError, loggerRequest, morganMiddleware, winston } from './logger';
+import { morganMiddleware, Logger } from './logger';
 
 export class App {
 
@@ -43,7 +43,7 @@ export class App {
     public listen() {
         const server = this.app.listen(this.port, '0.0.0.0', () => {
             const { port, address } = server.address() as AddressInfo;
-            winston.log('info', 'Server listening on:', 'http://' + address + ':' + port);
+            Logger.log('info', `Server listening on: http:// ${address} : ${port}`);
         });
     }
 }
