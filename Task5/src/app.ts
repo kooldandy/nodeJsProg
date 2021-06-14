@@ -3,6 +3,8 @@ import * as bodyParser from 'body-parser';
 import { AppRouter } from './routes';
 import { AddressInfo } from 'net';
 import { morganMiddleware, Logger } from './logger';
+import cors from 'cors';
+import { jwt, errorHandler } from './helper';
 
 export class App {
 
@@ -28,8 +30,15 @@ export class App {
                 req.rawBody = buf;
             }
         }));
+        // this.app.use(cors());
 
-        this.app.use(morganMiddleware)
+        this.app.use(morganMiddleware);
+
+        // use JWT auth to secure the api
+        this.app.use(jwt());
+
+        // global error handler
+        this.app.use(errorHandler);
     }
 
     private initializeRouter() {

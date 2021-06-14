@@ -28,10 +28,10 @@ export class UserService {
         }
     };
 
-    public createUser = async (name: string, email: string): Promise<IUser> => {
+    public createUser = async (name: string, email: string, password: string): Promise<IUser> => {
 
         try {
-            const result = await this.dao.insert(name, email);
+            const result = await this.dao.insert(name, email, password);
             return result;
         } catch (error) {
             throw new Error(error);

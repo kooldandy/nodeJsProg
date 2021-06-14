@@ -25,7 +25,7 @@ export class UserController {
 
     public createUser = (req: Request, res: Response) => {
         const body = req.body;
-        this.userService.createUser(body.username, body.email)
+        this.userService.createUser(body.username, body.email, body.password)
             .then((result: any) => constructResponse(res, result, 'User successufully created', 200))
             .catch((error: any) => contructErrorResponse(req, res, error, 400, false))
     };

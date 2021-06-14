@@ -17,9 +17,9 @@ export class UserDataAccess {
             })
     }
 
-    public insert(username: string, email: string): Promise<IUser> {
+    public insert(username: string, email: string, password: string): Promise<IUser> {
         return User
-            .create({ username, email })
+            .create({ username, email, password })
     }
 
     public update(user_id: number, value: string): Promise<[number, IUser[]]> {
@@ -40,6 +40,15 @@ export class UserDataAccess {
                     user_id,
                 }
             });
+    }
+
+    public findUser(username: string, password: string):Promise<IUser>{
+        return User.findOne({
+            where: {
+                username,
+                password
+            }
+        })
     }
 }
 

@@ -5,6 +5,7 @@ export class User extends Model {
   public user_id!: number;
   public username!: string;
   public email!: string;
+  public password: string;
   public readonly last_login!: Date;
 }
 
@@ -20,6 +21,10 @@ User.init(
       allowNull: false,
     },
     email: {
+      type: new DataTypes.STRING(128),
+      allowNull: false,
+    },
+    password: {
       type: new DataTypes.STRING(128),
       allowNull: false,
     },
