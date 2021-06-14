@@ -29,9 +29,6 @@ export class App {
             }
         }));
 
-        //this.app.use(loggerRequest);
-        //this.app.use(loggerError);
-
         this.app.use(morganMiddleware)
     }
 
@@ -41,7 +38,7 @@ export class App {
     }
 
     public listen() {
-        const server = this.app.listen(this.port, '0.0.0.0', () => {
+        const server = this.app.listen(this.port, '127.0.0.1', () => {
             const { port, address } = server.address() as AddressInfo;
             Logger.log('info', `Server listening on: http:// ${address} : ${port}`);
         });

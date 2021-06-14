@@ -1,5 +1,4 @@
-import { Model, DataTypes, BuildOptions } from "sequelize";
-import { Group, UserGroup } from ".";
+import { Model, DataTypes } from "sequelize";
 import { database } from "../db";
 
 export class User extends Model {
@@ -31,11 +30,7 @@ User.init(
   }
 );
 
-// User.belongsToMany(Group, {
-//   through: UserGroup,
-//   foreignKey: 'userId',
-// });
-
+// Below code is the delete the table data and recreate
 // User.sync({ force: true }).then(() => console.log("User table created"));
 
 User.sync({}).then(() => console.log("User table created"));

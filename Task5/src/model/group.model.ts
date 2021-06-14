@@ -33,10 +33,7 @@ Group.init(
     }
 );
 
-// Group.belongsToMany(User, {
-//     through: UserGroup,
-//     foreignKey: 'groupId',
-// });
-
+// Below code is the delete the table data and recreate
 // Group.sync({force: true}).then(() => console.log("Group table created"));
+
 Group.sync().then(() => console.log("Group table created"));
