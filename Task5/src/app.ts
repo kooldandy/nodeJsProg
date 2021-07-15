@@ -4,7 +4,7 @@ import { AppRouter } from './routes';
 import { AddressInfo } from 'net';
 import { morganMiddleware, Logger } from './logger';
 import cors from 'cors';
-import { jwt, errorHandler } from './helper';
+import { appJwt, appJwtFilter, errorHandler } from './helper';
 
 export class App {
 
@@ -24,25 +24,26 @@ export class App {
 
     private initializeMiddlewares() {
         this.app.use(bodyParser.urlencoded({ extended: true }));
+
         this.app.use(bodyParser.json({
             limit: '50mb',
             verify(req: any, res, buf, encoding) {
                 req.rawBody = buf;
             }
         }));
-        // this.app.use(cors());
+
+        this.app.use(cors());
 
         this.app.use(morganMiddleware);
 
         // use JWT auth to secure the api
-        this.app.use(jwt());
+        this.app.use(appJwt);
 
         // global error handler
         this.app.use(errorHandler);
     }
 
     private initializeRouter() {
-        this.app.get('/', (req, res) => res.send('Homework 3: CRUD operation with postgres DB'));
         this.app.use('/api', this.appRouter.getRouter());
     }
 

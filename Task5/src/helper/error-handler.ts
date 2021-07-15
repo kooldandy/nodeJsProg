@@ -2,6 +2,7 @@ import { contructErrorResponse } from "../util";
 import { NextFunction, Request, Response } from "express";
 
 export const errorHandler = (error: any, req: Request, res: Response, next: NextFunction) => {
+
     if (typeof (error) === 'string') {
         // custom application error
         return contructErrorResponse(req, res, error as any, 400, false);
