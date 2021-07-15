@@ -26,7 +26,7 @@ UserGroup.init(
             onUpdate: 'cascade',
         },
         groupId: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
             allowNull: false,
             references: {
                 model: Group,
