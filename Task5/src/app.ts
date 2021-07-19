@@ -3,6 +3,8 @@ import * as bodyParser from 'body-parser';
 import { AppRouter } from './routes';
 import { AddressInfo } from 'net';
 import { morganMiddleware, Logger } from './logger';
+import cors from 'cors';
+import { appJwt, appJwtFilter, errorHandler } from './helper';
 
 export class App {
 
@@ -22,6 +24,7 @@ export class App {
 
     private initializeMiddlewares() {
         this.app.use(bodyParser.urlencoded({ extended: true }));
+
         this.app.use(bodyParser.json({
             limit: '50mb',
             verify(req: any, res, buf, encoding) {
@@ -29,19 +32,23 @@ export class App {
             }
         }));
 
-        //this.app.use(loggerRequest);
-        //this.app.use(loggerError);
+        this.app.use(cors());
 
-        this.app.use(morganMiddleware)
+        this.app.use(morganMiddleware);
+
+        // use JWT auth to secure the api
+        this.app.use(appJwt);
+
+        // global error handler
+        this.app.use(errorHandler);
     }
 
     private initializeRouter() {
-        this.app.get('/', (req, res) => res.send('Homework 3: CRUD operation with postgres DB'));
         this.app.use('/api', this.appRouter.getRouter());
     }
 
     public listen() {
-        const server = this.app.listen(this.port, '0.0.0.0', () => {
+        const server = this.app.listen(this.port, '127.0.0.1', () => {
             const { port, address } = server.address() as AddressInfo;
             Logger.log('info', `Server listening on: http:// ${address} : ${port}`);
         });

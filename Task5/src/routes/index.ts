@@ -1,24 +1,28 @@
 import { Router } from 'express';
 import { createUserSchema, updateUserSchema } from '../schema';
-import { UserController, GroupController, UserGroupController } from './../controller';
+import { UserController, GroupController, UserGroupController, AuthController } from './../controller';
 
 export class AppRouter {
     private router: Router;
     private userController: UserController;
     private groupController: GroupController;
     private userGroupController: UserGroupController;
+    private authController: AuthController
 
     constructor() {
         this.router = Router();
         this.userController = new UserController();
         this.groupController = new GroupController();
         this.userGroupController = new UserGroupController();
+        this.authController = new AuthController();
 
         this.setUserRoutes();
 
         this.setGroupRoutes();
 
         this.setUserGroupRoutes();
+
+        this.setAuthRoute();
     }
 
     private setUserRoutes() {
@@ -39,7 +43,11 @@ export class AppRouter {
 
     private setUserGroupRoutes = () => {
         this.router.post('/usergroup', this.userGroupController.addUsersToGroup);
-      };
+    };
+
+    private setAuthRoute = () => {
+        this.router.post('/login', this.authController.authenticate);
+    }
 
     public getRouter = () => this.router;
 }

@@ -1,7 +1,7 @@
 import winston from 'winston';
 
-// Define your severity levels. 
-// With them, You can create log files, 
+// Define your severity levels.
+// With them, You can create log files,
 // see or hide levels based on the running ENV.
 const levels = {
   error: 0,
@@ -11,9 +11,9 @@ const levels = {
   debug: 4,
 }
 
-// This method set the current severity based on 
-// the current NODE_ENV: show all the log levels 
-// if the server was run in development mode; otherwise, 
+// This method set the current severity based on
+// the current NODE_ENV: show all the log levels
+// if the server was run in development mode; otherwise,
 // if it was run in production, show only warn and error messages.
 const level = () => {
   const env = process.env.NODE_ENV || 'development'
@@ -21,7 +21,7 @@ const level = () => {
   return isDevelopment ? 'debug' : 'warn'
 }
 
-// Define different colors for each level. 
+// Define different colors for each level.
 // Colors make the log message more visible,
 // adding the ability to focus or ignore messages.
 const colors = {
@@ -32,7 +32,7 @@ const colors = {
   debug: 'white',
 }
 
-// Tell winston that you want to link the colors 
+// Tell winston that you want to link the colors
 // defined above to the severity levels.
 winston.addColors(colors)
 
@@ -50,8 +50,8 @@ const format = winston.format.combine(
   ),
 )
 
-// Define which transports the logger must use to print out messages. 
-// In this example, we are using three different transports 
+// Define which transports the logger must use to print out messages.
+// In this example, we are using three different transports
 const transports = [
   // Allow the use the console to print the messages
   new winston.transports.Console({
@@ -78,7 +78,7 @@ const transports = [
   }),
 ]
 
-// Create the logger instance that has to be exported 
+// Create the logger instance that has to be exported
 // and used to log messages.
 const Logger = winston.createLogger({
   level: level(),

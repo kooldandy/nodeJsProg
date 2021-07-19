@@ -1,4 +1,4 @@
-import Joi from "joi";
+import Joi, { string } from "joi";
 import { Request, Response } from "express";
 
 export const constructResponse = (res: Response, result: any, message: string, status: number) => {

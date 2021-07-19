@@ -4,7 +4,8 @@ import Joi from 'joi';
 export function createUserSchema(req: Request, res: Response, next: NextFunction) {
     const userSchema = Joi.object({
         username: Joi.string().min(3).max(30).required(),
-        email: Joi.string().email().min(8).max(30).required()
+        email: Joi.string().email().min(8).max(30).required(),
+        password: Joi.string().min(4).max(10).required()
     });
     validateRequest(req, res, next, userSchema);
 }
@@ -54,6 +55,14 @@ export function addUsersToGroupSchema(req: Request) {
         userIds: Joi.array().min(1).required()
     });
     return validateRequest1(req, groupUserSchema);
+}
+
+export function userAuthSchema(req: Request) {
+    const userAuth = Joi.object({
+        name: Joi.string().min(3).max(30).required(),
+        password: Joi.string().min(4).max(10).required()
+    });
+    return validateRequest1(req, userAuth);
 }
 
 const validateRequest1 = (req: Request, schema: Joi.Schema) => {

@@ -3,12 +3,18 @@ import { database } from '../db';
 import { Group, User } from './../model';
 
 export class UserGroup extends Model {
+    public id: string;
     public userId!: number;
     public groupId!: number;
 }
 
 UserGroup.init(
     {
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
+        },
         userId: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -20,7 +26,7 @@ UserGroup.init(
             onUpdate: 'cascade',
         },
         groupId: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUID,
             allowNull: false,
             references: {
                 model: Group,
